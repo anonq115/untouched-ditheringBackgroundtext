@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<!-- Importing the Inter font from Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+#text-container {
+  width: 600px;
+  margin: 0 auto;
+  font-size: 60px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-text-segment {
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+  margin-right: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-text-segment::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: url('https://pbs.twimg.com/media/FmeKpEoWYAEhEl8?format=jpg&name=4096x4096');
+  background-size: cover;
+  background-position: center;
+ 
+}
+
+.gradient-text-segment::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+     z-index: -1;
+    background: linear-gradient(to right, #0000ff94, #20209b85), url(https://grainy-gradients.vercel.app/noise.svg);
+    background-size: cover;
+    filter: contrast(170%) brightness(1000%);
+    opacity: .8;/* Adjust opacity as needed */
+}
+</style>
+</head>
+<body>
+
+<div id="text-container">
+  so saturation playscale is from 85% to 100% and the luminance goes from 55% to 75%
+</div>
+
+<script>
+function applyGradientToText(containerId) {
+  const container = document.getElementById(containerId);
+  let text = container.textContent;
+  text = text.replace(/\s+/g, ' ').trim();
+  const words = text.split(' ');
+  container.textContent = '';
+
+  words.forEach(word => {
+    const span = document.createElement('span');
+    span.classList.add('gradient-text-segment');
+    span.textContent = word + ' ';
+    container.appendChild(span);
+  });
+}
+
+applyGradientToText("text-container");
+</script>
+</body>
+</html>
